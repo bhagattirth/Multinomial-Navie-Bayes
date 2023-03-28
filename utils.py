@@ -5,6 +5,7 @@ import random
 from nltk.corpus import stopwords
 import nltk
 
+
 REPLACE_NO_SPACE = re.compile("[._;:!`¦\'?,\"()\[\]]")
 REPLACE_WITH_SPACE = re.compile("(<br\s*/><br\s*/>)|(\-)|(\/)")
 nltk.download('stopwords')  
@@ -25,7 +26,7 @@ def load_training_set(percentage_positives, percentage_negatives):
 	for filename in glob.glob('train/pos/*.txt'):
 		if random.random() > percentage_positives:
 			continue
-		with open(os.path.join(os.getcwd(), filename), 'r') as f:
+		with open(os.path.join(os.getcwd(), filename), 'r', encoding='utf-8') as f:
 			contents = f.read()
 			contents = preprocess_text(contents)
 			positive_instances.append(contents)
@@ -33,7 +34,7 @@ def load_training_set(percentage_positives, percentage_negatives):
 	for filename in glob.glob('train/neg/*.txt'):
 		if random.random() > percentage_negatives:
 			continue
-		with open(os.path.join(os.getcwd(), filename), 'r') as f:
+		with open(os.path.join(os.getcwd(), filename), 'r', encoding='utf-8') as f:
 			contents = f.read()
 			contents = preprocess_text(contents)
 			negative_instances.append(contents)
@@ -46,14 +47,14 @@ def load_test_set(percentage_positives, percentage_negatives):
 	for filename in glob.glob('test/pos/*.txt'):
 		if random.random() > percentage_positives:
 			continue
-		with open(os.path.join(os.getcwd(), filename), 'r') as f:
+		with open(os.path.join(os.getcwd(), filename), 'r', encoding='utf-8') as f:
 			contents = f.read()
 			contents = preprocess_text(contents)
 			positive_instances.append(contents)
 	for filename in glob.glob('test/neg/*.txt'):
 		if random.random() > percentage_negatives:
 			continue
-		with open(os.path.join(os.getcwd(), filename), 'r') as f:
+		with open(os.path.join(os.getcwd(), filename), 'r', encoding='utf-8') as f:
 			contents = f.read()
 			contents = preprocess_text(contents)
 			negative_instances.append(contents)
